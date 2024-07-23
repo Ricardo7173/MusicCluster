@@ -1,13 +1,20 @@
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, redirect
+from .forms import SurveyForm
+from .kmeans_analysis import run_kmeans
 
-@csrf_exempt
-def home(request):
-    return JsonResponse({"message": "Music Cluster API is running"})
-
-@csrf_exempt
-def process_data(request):
+def survey_view(request):
     if request.method == 'POST':
-        # Por ahora, solo devolveremos un mensaje de éxito
-        return JsonResponse({"message": "Endpoint en construcción"}, status=200)
-    return JsonResponse({"error": "Método no permitido"}, status=405)
+        form = SurveyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('thank_you')
+    else:
+        form = SurveyForm()
+    return render(request, 'music_app/survey.html', {'form': form})
+
+def thank_you_view(request):
+    return render(request, 'music_app/thank_you.html')
+
+def analysis_view(request):
+    run_kmeans()
+    return render(request, 'music_app/analysis.html')
