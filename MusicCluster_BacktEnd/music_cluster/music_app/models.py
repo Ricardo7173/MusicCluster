@@ -1,25 +1,13 @@
 from django.db import models
 
 class SurveyResponse(models.Model):
-    GENDER_CHOICES = [
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('O', 'Other'),
-    ]
-
-    DEVICE_CHOICES = [
-        ('P', 'Phone'),
-        ('C', 'Computer'),
-        ('T', 'Tablet'),
-    ]
-
-    age = models.IntegerField()
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    favorite_genre = models.CharField(max_length=100)
-    listening_hours_per_week = models.IntegerField()
-    favorite_artist = models.CharField(max_length=100)
-    concert_attendance = models.BooleanField()
-    device_preference = models.CharField(max_length=1, choices=DEVICE_CHOICES)
-
-    def __str__(self):
-        return f"{self.age}, {self.gender}, {self.favorite_genre}"
+    instrument = models.CharField(max_length=50, default='Guitarra eléctrica')
+    rhythm = models.CharField(max_length=50, default='Rápido y enérgico')
+    lyrics = models.CharField(max_length=50, default='Letras de amor y relaciones')
+    language = models.CharField(max_length=50, default='Inglés')  # Valor por defecto
+    listening_scenario = models.CharField(max_length=50, default='En casa, relajado/a')
+    musical_personality = models.CharField(max_length=50, default='Me encanta la energía y la adrenalina de la música')
+    favorite_genre = models.CharField(max_length=50, default='Rock')
+    favorite_artist = models.CharField(max_length=50, default='The Beatles')
+    listening_platform = models.CharField(max_length=50, default='Spotify')
+    production_quality = models.CharField(max_length=50, default='Muy importante')

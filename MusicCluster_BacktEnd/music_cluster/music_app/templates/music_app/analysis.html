@@ -1,13 +1,25 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>K-Means Analysis Results</title>
-    {% load static %}
+    <title>Resultados del Análisis K-Means</title>
 </head>
 <body>
-    <h1>K-Means Analysis Results</h1>
-    <img src="{% static 'music_app/kmeans_plot.png' %}" alt="K-Means Plot">
-    <img src="{% static 'music_app/genre_by_cluster.png' %}" alt="Favorite Genres by Cluster">
-    <img src="{% static 'music_app/device_by_cluster.png' %}" alt="Device Preferences by Cluster">
+    <h1>Resultados del Análisis K-Means</h1>
+    <img src="{% static 'music_app/kmeans_plot.png' %}" alt="Gráfico K-Means">
+    <img src="{% static 'music_app/kmeans_3d.png' %}" alt="K-Means Clustering (3D)">
+    <img src="{% static 'music_app/silhouette_plot.png' %}" alt="Gráfico de Silueta">
+    <img src="{% static 'music_app/elbow_method.png' %}" alt="Método del Codo">
+    <img src="{% static 'music_app/correlation_heatmap.png' %}" alt="Mapa de Calor de Correlaciones">
+    <img src="{% static 'music_app/instrument_by_cluster.png' %}" alt="Instrumentos Favoritos por Cluster">
+    <img src="{% static 'music_app/rhythm_by_cluster.png' %}" alt="Ritmos Preferidos por Cluster">
+    <img src="{% static 'music_app/lyrics_by_cluster.png' %}" alt="Tipos de Letras Preferidos por Cluster">
+    <img src="{% static 'music_app/language_by_cluster.png' %}" alt="Idiomas Preferidos por Cluster">
+    <img src="{% static 'music_app/scenario_by_cluster.png' %}" alt="Escenarios de Escucha por Cluster">
+    <img src="{% static 'music_app/personality_by_cluster.png' %}" alt="Personalidades Musicales por Cluster">
+    <img src="{% static 'music_app/artist_by_cluster.png' %}" alt="Artistas Favoritos por Cluster">
+    <img src="{% static 'music_app/platform_by_cluster.png' %}" alt="Plataformas de Escucha por Cluster">
+    <img src="{% static 'music_app/quality_by_cluster.png' %}" alt="Importancia de la Calidad de Producción por Cluster">
 </body>
 </html>
