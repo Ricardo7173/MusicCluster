@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
@@ -6,6 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from mpl_toolkits.mplot3d import Axes3D
 from .models import SurveyResponse
+import pickle
 
 def run_kmeans():
     data = pd.DataFrame(list(SurveyResponse.objects.all().values()))
@@ -39,6 +41,11 @@ def run_kmeans():
     # Aplicar K-Means con el número óptimo de clusters
     kmeans = KMeans(n_clusters=optimal_clusters)
     data['cluster'] = kmeans.fit_predict(features)
+
+    # Guardar el modelo K-Means ajustado
+    model_path = os.path.join(os.path.dirname(__file__), 'kmeans_model.pkl')
+    with open(model_path, 'wb') as f:
+        pickle.dump(kmeans, f)
 
     # Gráfico de Dispersión en 3D
     fig = plt.figure(figsize=(8, 6))
