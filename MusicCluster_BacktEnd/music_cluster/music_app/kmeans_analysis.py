@@ -12,7 +12,7 @@ import pickle
 def run_kmeans():
     data = pd.DataFrame(list(SurveyResponse.objects.all().values()))
 
-    # Selecciona las columnas relevantes para el análisis
+    # Seleccionar las columnas relevantes para el análisis
     features = pd.get_dummies(data[['instrument', 'rhythm', 'lyrics', 'language', 
                                     'listening_scenario', 'musical_personality', 
                                     'favorite_genre', 'favorite_artist', 

@@ -4,14 +4,49 @@
 <html>
 <head>
     <title>Resultados del Análisis K-Means</title>
+    <style>
+        body {
+            background-color: #E6E6FA; /* Color de fondo lila */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif; /* Tipografía básica */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4B0082; /* Tonalidad de morado oscuro para el texto */
+            text-align: center;
+            font-family: 'Georgia', serif; /* Tipografía bonita */
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border: 2px solid #8A2BE2; /* Borde morado */
+            border-radius: 10px;
+        }
+
+        /* Contenedor para las imágenes */
+        .container {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
     <h1>Resultados del Análisis K-Means</h1>
-    <img src="{% static 'music_app/kmeans_plot.png' %}" alt="Gráfico K-Means">
+    <!-- <img src="{% static 'music_app/kmeans_plot.png' %}" alt="Gráfico K-Means"> -->
     <img src="{% static 'music_app/kmeans_3d.png' %}" alt="K-Means Clustering (3D)">
     <img src="{% static 'music_app/silhouette_plot.png' %}" alt="Gráfico de Silueta">
     <img src="{% static 'music_app/elbow_method.png' %}" alt="Método del Codo">
-    <img src="{% static 'music_app/correlation_heatmap.png' %}" alt="Mapa de Calor de Correlaciones">
+    <!-- <img src="{% static 'music_app/correlation_heatmap.png' %}" alt="Mapa de Calor de Correlaciones"> -->
     <img src="{% static 'music_app/instrument_by_cluster.png' %}" alt="Instrumentos Favoritos por Cluster">
     <img src="{% static 'music_app/rhythm_by_cluster.png' %}" alt="Ritmos Preferidos por Cluster">
     <img src="{% static 'music_app/lyrics_by_cluster.png' %}" alt="Tipos de Letras Preferidos por Cluster">

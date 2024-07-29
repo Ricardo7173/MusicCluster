@@ -3,24 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Music App</title>
+    <title>Inicio - Music App</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #E6E6FA; /* Color de fondo lila */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif; /* Tipografía básica */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .jumbotron {
+            text-align: center;
+            font-family: 'Georgia', serif; /* Tipografía bonita */
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .btn-primary, .btn-info, .btn-success, .btn-warning, .btn-secondary {
+            background-color: #8A2BE2; /* Tonalidad de morado */
+            border-color: #8A2BE2; /* Misma tonalidad de morado */
+            color: white; /* Letras blancas */
+        }
+
+        .btn-primary:hover, .btn-info:hover, .btn-success:hover, .btn-warning:hover, .btn-secondary:hover {
+            background-color: #7B1FA2; /* Tonalidad de morado más oscuro para el hover */
+            border-color: #7B1FA2; /* Misma tonalidad de morado más oscuro para el hover */
+        }
+
+        h1, p {
+            color: #4B0082; /* Tonalidad de morado oscuro para el texto */
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <div class="jumbotron">
-            <h1 class="display-4">Welcome to the Music App</h1>
-            <p class="lead">This is a simple app to help you find out more about music preferences.</p>
+            <h1 class="display-4">Bienvenido a la Music App</h1>
+            <p class="lead">Esta es una aplicación simple para ayudarte a conocer más sobre las preferencias musicales.</p>
             <hr class="my-4">
-            <p>Please take the survey to help us gather data and analyze music preferences.</p>
-            <a class="btn btn-primary btn-lg" href="{% url 'survey' %}" role="button">Take the Survey</a>
+            <p>Por favor, realiza la encuesta para ayudarnos a recopilar datos y analizar las preferencias musicales.</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'survey' %}" role="button">Realizar la Encuesta</a>
         </div>
         <div class="mt-4">
-            <a class="btn btn-info btn-lg" href="{% url 'analysis' %}" role="button">View Analysis</a>
-            <a class="btn btn-success btn-lg" href="{% url 'get_survey_results' %}" role="button">Survey Results</a>
-            <a class="btn btn-warning btn-lg" href="{% url 'export_survey_results' %}" role="button">Export to Excel</a>
-            <a class="btn btn-secondary btn-lg" href="{% url 'survey_data' %}" role="button">Survey Data</a>
+            <a class="btn btn-info btn-lg" href="{% url 'analysis' %}" role="button">Ver Análisis</a>
+            <a class="btn btn-success btn-lg" href="{% url 'get_survey_results' %}" role="button">Resultados de la Encuesta</a>
+            <a class="btn btn-warning btn-lg" href="{% url 'export_survey_results' %}" role="button">Exportar a Excel</a>
+            <a class="btn btn-secondary btn-lg" href="{% url 'survey_data' %}" role="button">Datos de la Encuesta</a>
         </div>
     </div>
     <!-- Bootstrap JS and dependencies -->

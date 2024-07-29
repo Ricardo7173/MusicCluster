@@ -3,12 +3,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #E6E6FA; /* Color de fondo lila */
 }
 
 h1 {
-    color: #333;
+    color: #4B0082; /* Tonalidad de morado oscuro para el texto */
     text-align: center;
+    font-family: 'Georgia', serif; /* Tipografía bonita */
     margin-top: 20px;
 }
 
@@ -27,12 +28,12 @@ button {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #8A2BE2; /* Tonalidad de morado */
+    color: #fff; /* Letras blancas */
     font-size: 16px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #7B1FA2; /* Tonalidad de morado más oscuro para el hover */
 }
