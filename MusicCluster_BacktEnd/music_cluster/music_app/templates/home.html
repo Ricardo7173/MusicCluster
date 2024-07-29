@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Music App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome to the Music App</h1>
-    <p><a href="{% url 'survey' %}">Take the Survey</a></p>
-    <p><a href="{% url 'analysis' %}">View Analysis</a></p>
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to the Music App</h1>
+            <p class="lead">This is a simple app to help you find out more about music preferences.</p>
+            <hr class="my-4">
+            <p>Please take the survey to help us gather data and analyze music preferences.</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'survey' %}" role="button">Take the Survey</a>
+        </div>
+        <div class="mt-4">
+            <a class="btn btn-info btn-lg" href="{% url 'analysis' %}" role="button">View Analysis</a>
+            <a class="btn btn-success btn-lg" href="{% url 'get_survey_results' %}" role="button">Survey Results</a>
+            <a class="btn btn-warning btn-lg" href="{% url 'export_survey_results' %}" role="button">Export to Excel</a>
+            <a class="btn btn-secondary btn-lg" href="{% url 'survey_data' %}" role="button">Survey Data</a>
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
