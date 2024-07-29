@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import survey_view, thank_you_view, analysis_view, get_survey_results, export_survey_results
+from .views import survey_data_view, survey_view, thank_you_view, analysis_view, get_survey_results, export_survey_results
 
 urlpatterns = [
     path('survey/', survey_view, name='survey'),
@@ -7,4 +7,5 @@ urlpatterns = [
     path('analysis/', analysis_view, name='analysis'),
     path('survey/results/', get_survey_results, name='get_survey_results'),
     path('survey/export/', export_survey_results, name='export_survey_results'),
+    path('surveydata/', survey_data_view, name='survey_data'),
 ]

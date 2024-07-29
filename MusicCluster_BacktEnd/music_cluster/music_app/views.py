@@ -81,14 +81,17 @@ def survey_view(request):
                 'listening_platform': new_response.listening_platform,
                 'production_quality': new_response.production_quality
             }])
+
+            # Convertir los datos a variables dummy
             new_data_encoded = pd.get_dummies(new_data)
 
-            # Asegurarse de que las columnas coinciden con el modelo entrenado
+            # Asegurarse de que las columnas coincidan con el modelo entrenado
             model_columns = kmeans.feature_names_in_
-            missing_cols = set(model_columns) - set(new_data_encoded.columns)
-            for col in missing_cols:
-                new_data_encoded[col] = 0
+            for col in model_columns:
+                if col not in new_data_encoded.columns:
+                    new_data_encoded[col] = 0
 
+            # Reordenar las columnas para que coincidan con el modelo
             new_data_encoded = new_data_encoded[model_columns]
 
             # Hacer la predicción del clúster
@@ -96,11 +99,13 @@ def survey_view(request):
 
             # Determinar el género predominante en ese clúster
             all_responses = pd.DataFrame(list(SurveyResponse.objects.all().values()))
-            all_responses['cluster'] = kmeans.predict(pd.get_dummies(all_responses[[
+            all_responses_encoded = pd.get_dummies(all_responses[[
                 'instrument', 'rhythm', 'lyrics', 'language', 'listening_scenario',
                 'musical_personality', 'favorite_genre', 'favorite_artist', 
                 'listening_platform', 'production_quality'
-            ]]))
+            ]])
+            all_responses_encoded = all_responses_encoded.reindex(columns=model_columns, fill_value=0)
+            all_responses['cluster'] = kmeans.predict(all_responses_encoded)
 
             cluster_data = all_responses[all_responses['cluster'] == cluster[0]]
             predominant_genre = cluster_data['favorite_genre'].mode()[0]
@@ -117,3 +122,24 @@ def thank_you_view(request):
 def analysis_view(request):
     run_kmeans()
     return render(request, 'music_app/analysis.html')
+
+def survey_data_view(request):
+    # Obtener los datos de la encuesta
+    data = SurveyResponse.objects.all().values()
+
+    # Convertir a DataFrame
+    df = pd.DataFrame(list(data))
+
+    if request.GET.get('export') == 'excel':
+        # Exportar a Excel
+        output = BytesIO()
+        with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+            df.to_excel(writer, index=False, sheet_name='Encuesta')
+        output.seek(0)
+        response = HttpResponse(output, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename="datos_encuesta.xlsx"'
+        return response
+
+    # Renderizar la tabla en HTML
+    context = {'data': df.to_dict(orient='records')}
+    return render(request, 'music_app/survey_table.html', context)
