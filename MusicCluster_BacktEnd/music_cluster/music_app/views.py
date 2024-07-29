@@ -5,6 +5,57 @@ from .models import SurveyResponse
 import pickle
 import os
 import pandas as pd
+from django.http import JsonResponse
+from django.http import HttpResponse
+import openpyxl
+from io import BytesIO
+
+def export_survey_results(request):
+    # Obtener los datos de la base de datos
+    results = list(SurveyResponse.objects.all().values())
+
+    # Crear un libro de trabajo de Excel
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = 'Survey Results'
+
+    # Encabezados
+    headers = ['ID', 'Instrument', 'Rhythm', 'Lyrics', 'Language', 'Listening Scenario', 
+               'Musical Personality', 'Favorite Genre', 'Favorite Artist', 'Listening Platform', 
+               'Production Quality']
+    ws.append(headers)
+
+    # Agregar los datos a la hoja
+    for result in results:
+        ws.append([
+            result['id'],
+            result['instrument'],
+            result['rhythm'],
+            result['lyrics'],
+            result['language'],
+            result['listening_scenario'],
+            result['musical_personality'],
+            result['favorite_genre'],
+            result['favorite_artist'],
+            result['listening_platform'],
+            result['production_quality']
+        ])
+
+    # Guardar el libro en un buffer de memoria
+    buffer = BytesIO()
+    wb.save(buffer)
+    buffer.seek(0)
+
+    # Crear una respuesta HTTP
+    response = HttpResponse(buffer, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=survey_results.xlsx'
+
+    return response
+
+def get_survey_results(request):
+    if request.method == 'GET':
+        results = list(SurveyResponse.objects.all().values())
+        return JsonResponse(results, safe=False)
 
 def survey_view(request):
     if request.method == 'POST':
